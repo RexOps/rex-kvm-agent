@@ -1,0 +1,21 @@
+#!perl -w
+
+use strict;
+use warnings;
+use Data::Dumper;
+
+use FindBin;
+use lib "$FindBin::Bin/../lib";
+
+use Rex::KVM::Agent;
+
+
+sub main {
+  open(my $serial_line_fh, "+<", "/dev/ttyS1") or die($!);
+  my $agent = Rex::KVM::Agent->new(fh => $serial_line_fh);
+  $agent->run;
+}
+
+
+main();
+
